@@ -9,10 +9,10 @@ export function exposeSettingsContext() {
   const { ipcRenderer } = window.require('electron');
   return {
     settingsMode: {
-      set: () => ipcRenderer.invoke(SETTINGS_MODE_GET),
+      set: (args) => ipcRenderer.invoke(SETTINGS_MODE_GET, ...args),
       get: () => ipcRenderer.invoke(SETTINGS_MODE_SET),
       getLibrary: () => ipcRenderer.invoke(SETTINGS_MODE_GET_LIBRARY),
-      setLibrary: () => ipcRenderer.invoke(SETTINGS_MODE_SET_LIBRARY),
+      setLibrary: (args) => ipcRenderer.invoke(SETTINGS_MODE_SET_LIBRARY, ...args),
     },
   };
 }
